@@ -5,11 +5,13 @@
 package View;
 
 import Controller.BarangController;
+import Controller.KategoriController;
 import Model.Barang;
 import Model.Kategori;
+import java.awt.GridLayout;
 
 import javax.swing.*;
-import java.awt.*;
+import java.util.List;
 
 /**
  *
@@ -90,7 +92,8 @@ public class BarangForm extends JDialog {
         try {
             Barang b = barang != null ? barang : new Barang();
             b.setNamaBarang(tfNama.getText());
-            b.setIdKategori(Integer.parseInt(tfKategori.getText()));
+            Kategori selectedKategori = (Kategori) comboKategori.getSelectedItem();
+            b.setIdKategori(selectedKategori.getIdKategori());
             b.setSatuan(tfSatuan.getText());
             b.setStok(Integer.parseInt(tfStok.getText()));
             b.setHargaBeli(Double.parseDouble(tfHargaBeli.getText()));

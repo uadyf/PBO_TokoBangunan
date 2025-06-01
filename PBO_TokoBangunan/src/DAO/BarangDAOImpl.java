@@ -109,4 +109,32 @@ public class BarangDAOImpl implements BarangDAO {
         }
         return list;
     }
+    
+    @Override
+    public List<Barang> getBarangByKategori(int idKategori) {
+        List<Barang> list = new ArrayList<>();
+        try {
+            String sql = "SELECT * FROM barang WHERE id_kategori = ?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, idKategori);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Barang b = new Barang();
+                b.setIdBarang(rs.getInt("id_barang"));
+                b.setNamaBarang(rs.getString("nama_barang"));
+                b.setIdKategori(rs.getInt("id_kategori"));
+                b.setSatuan(rs.getString("satuan"));
+                b.setStok(rs.getInt("stok"));
+                b.setHargaBeli(rs.getDouble("harga_beli"));
+                b.setHargaJual(rs.getDouble("harga_jual"));
+                list.add(b);
+            }
+            rs.close();
+            ps.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
 }

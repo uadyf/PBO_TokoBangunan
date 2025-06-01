@@ -17,8 +17,22 @@ public class Kategori {
         this.namaKategori = nama;
     }
 
-    public int getIdKategori() { return idKategori; }
-    public String getNamaKategori() { return namaKategori; }
+    public int getIdKategori() {
+        return idKategori;
+    }
+    
+    public void setIdKategori(int idKategori) {
+        this.idKategori = idKategori;
+    }
+    
+    public String getNamaKategori() {
+        return namaKategori;
+    }
+    
+    public void setNamaKategori(String namaKategori) {
+        this.namaKategori = namaKategori;
+    }
+
 
     @Override
     public String toString() {

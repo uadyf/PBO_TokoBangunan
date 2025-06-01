@@ -14,12 +14,16 @@ import java.util.*;
  */
 public class KategoriDAOImpl implements KategoriDAO {
     private Connection conn = Connector.Connect();
-
+    
+    public KategoriDAOImpl(Connection conn) {
+        this.conn = conn;
+    }
+    
     @Override
-    public List<Kategori> getAll() {
+    public List<Kategori> getAllKategori() {
         List<Kategori> list = new ArrayList<>();
         try (Statement st = conn.createStatement()) {
-            ResultSet rs = st.executeQuery("SELECT * FROM kategori");
+            ResultSet rs = st.executeQuery("SELECT * FROM kategori_barang");
             while (rs.next()) {
                 list.add(new Kategori(rs.getInt("id_kategori"), rs.getString("nama_kategori")));
             }
