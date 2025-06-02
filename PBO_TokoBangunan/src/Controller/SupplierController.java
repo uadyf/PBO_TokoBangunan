@@ -39,6 +39,18 @@ public class SupplierController {
     public Supplier getById(int id) {
         return dao.getById(id);
     }
+    
+    public Supplier getOrCreateSupplier(String nama, String kontak, String alamat) {
+        SupplierDAO supplierDAO = new SupplierDAOImpl();
+        Supplier existing = supplierDAO.getByName(nama);
+        if (existing != null) {
+            return existing;
+        } else {
+            Supplier newSupplier = new Supplier(nama, kontak, alamat);
+            supplierDAO.insert(newSupplier);
+            return supplierDAO.getByName(nama); // Ambil ulang untuk mendapatkan ID-nya
+        }
+    }
 }
 
 

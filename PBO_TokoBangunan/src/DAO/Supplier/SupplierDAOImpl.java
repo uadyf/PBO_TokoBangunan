@@ -97,4 +97,26 @@ public class SupplierDAOImpl implements SupplierDAO {
         }
         return s;
     }
+    
+    @Override
+    public Supplier getByName(String nama) {
+        Supplier supplier = null;
+        try (Connection conn = Connector.Connect()) {
+            String sql = "SELECT * FROM supplier WHERE nama_supplier = ?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, nama);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                supplier = new Supplier(
+                    rs.getInt("id_supplier"),
+                    rs.getString("nama_supplier"),
+                    rs.getString("kontak"),
+                    rs.getString("alamat")
+                );
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return supplier;
+    }
 }

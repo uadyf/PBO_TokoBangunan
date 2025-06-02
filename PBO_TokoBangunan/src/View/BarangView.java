@@ -7,12 +7,15 @@ package View;
 import Controller.BarangController;
 import Controller.KategoriController;
 import Model.Barang;
+import Model.BarangMasuk.BarangMasuk;
 import Model.Kategori;
 import View.BarangMasuk.BarangMasukForm;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.List;
 /**
  *
@@ -35,6 +38,7 @@ public class BarangView extends JFrame {
         tableModel = new DefaultTableModel(new String[]{"ID", "Nama", "Kategori", "Satuan", "Stok", "Beli", "Jual"}, 0);
         table = new JTable(tableModel);
         JScrollPane scrollPane = new JScrollPane(table);
+        
 
         // Panel atas
         JPanel panelAtas = new JPanel();
@@ -65,7 +69,6 @@ public class BarangView extends JFrame {
         panelAtas.add(comboFilterKategori);
         panelAtas.add(btnFilter);
 
-        // Aksi tombol
         btnTambah.addActionListener(e -> {
             BarangForm form = new BarangForm(this, null);
             form.setVisible(true);
@@ -112,14 +115,16 @@ public class BarangView extends JFrame {
             }
         });
 
-        btnBarangMasuk.addActionListener(e -> {
-            BarangMasukForm form = new BarangMasukForm(this);
-            form.setVisible(true);
-        });
-        add(panelAtas, BorderLayout.NORTH);
-        add(scrollPane, BorderLayout.CENTER);
-
-        loadData();
+//        btnBarangMasuk.addActionListener(e -> {
+//            int row = table.getSelectedRow();
+//            if (row >= 0) {
+//                int idBarang = (int) tableModel.getValueAt(row, 0);
+//                String namaBarang = (String) tableModel.getValueAt(row, 1);
+//                showBarangMasukDialog(idBarang, namaBarang);
+//            } else {
+//                JOptionPane.showMessageDialog(this, "Pilih barang terlebih dahulu.");
+//            }
+//        });
     }
 
     private void loadData() {
@@ -129,7 +134,7 @@ public class BarangView extends JFrame {
             tableModel.addRow(new Object[]{
                     b.getIdBarang(),
                     b.getNamaBarang(),
-                    b.getIdKategori(), // Jika ingin menampilkan nama kategori, harus join
+                    b.getIdKategori(),
                     b.getSatuan(),
                     b.getStok(),
                     b.getHargaBeli(),
@@ -153,4 +158,44 @@ public class BarangView extends JFrame {
             });
         }
     }
+    
+//    private void showBarangMasukDialog(int idBarang, String namaBarang) {
+//        JTextField tfTanggal = new JTextField(10);
+//        JTextField tfNamaSupplier = new JTextField(20);
+//        JTextField tfJumlah = new JTextField(5);
+//        JTextField tfHarga = new JTextField(10);
+//
+//        JPanel panel = new JPanel(new GridLayout(0, 2));
+//        panel.add(new JLabel("Tanggal Masuk (YYYY-MM-DD):"));
+//        panel.add(tfTanggal);
+//        panel.add(new JLabel("Nama Supplier:"));
+//        panel.add(tfNamaSupplier);
+//        panel.add(new JLabel("Jumlah:"));
+//        panel.add(tfJumlah);
+//        panel.add(new JLabel("Harga Satuan:"));
+//        panel.add(tfHarga);
+//
+//        int result = JOptionPane.showConfirmDialog(this, panel, "Input Barang Masuk untuk: " + namaBarang,
+//                JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+//
+//        if (result == JOptionPane.OK_OPTION) {
+//            String tanggal = tfTanggal.getText().trim();
+//            String namaSupplier = tfNamaSupplier.getText().trim();
+//            int jumlah = Integer.parseInt(tfJumlah.getText().trim());
+//            double harga = Double.parseDouble(tfHarga.getText().trim());
+//
+//            Controller.BarangMasukController controller = new Controller.BarangMasukController();
+//            BarangMasuk barang = new BarangMasuk();
+//            
+//            boolean success = controller.simpanBarangMasuk(tanggal, namaSupplier, idBarang, jumlah, harga);
+//
+//            if (success) {
+//                JOptionPane.showMessageDialog(this, "Data barang masuk berhasil disimpan!");
+//                loadData();
+//            } else {
+//                JOptionPane.showMessageDialog(this, "Gagal menyimpan data barang masuk.", "Error", JOptionPane.ERROR_MESSAGE);
+//            }
+//        }
+//    }
+
 }

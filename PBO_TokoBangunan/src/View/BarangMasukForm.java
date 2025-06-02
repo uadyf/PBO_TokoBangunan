@@ -16,6 +16,7 @@ import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.sql.Connection;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -75,16 +76,16 @@ public class BarangMasukForm extends JFrame {
             tableModel.addRow(new Object[]{selected.getNamaBarang(), jumlah, harga});
         });
 
-        btnSimpan.addActionListener(e -> {
-            BarangMasuk barangMasuk = new BarangMasuk();
-            barangMasuk.setTanggalMasuk(new Date()); // atau pilih tanggal
-            barangMasuk.setSupplier(new Supplier(1, "Default")); // bisa ganti pilihan supplier
-            barangMasuk.setKeterangan("Barang Masuk");
-
-            BarangMasukController controller = new BarangMasukController();
-            controller.simpanBarangMasuk(barangMasuk, detailList);
-            JOptionPane.showMessageDialog(this, "Barang masuk disimpan!");
-        });
+//        btnSimpan.addActionListener(e -> {
+//            BarangMasuk barangMasuk = new BarangMasuk();
+//            barangMasuk.setTanggal(new Date()); // atau pilih tanggal
+//            barangMasuk.setSupplier(new Supplier("Default")); // bisa ganti pilihan supplier
+//            barangMasuk.setKeterangan("Barang Masuk");
+//
+//            BarangMasukController controller = new BarangMasukController();
+//            controller.simpanBarangMasuk(barangMasuk, detailList);
+//            JOptionPane.showMessageDialog(this, "Barang masuk disimpan!");
+//        });
 
         setVisible(true);
     }

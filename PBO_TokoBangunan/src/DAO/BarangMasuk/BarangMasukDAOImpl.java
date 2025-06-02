@@ -37,7 +37,7 @@ public class BarangMasukDAOImpl implements BarangMasukDAO {
             conn.setAutoCommit(false);
 
             psMasuk = conn.prepareStatement(sqlMasuk, Statement.RETURN_GENERATED_KEYS);
-            psMasuk.setDate(1, new java.sql.Date(barangMasuk.getTanggalMasuk().getTime()));
+            psMasuk.setDate(1, new java.sql.Date(barangMasuk.getTanggal().getTime()));
             psMasuk.setInt(2, barangMasuk.getSupplier().getId()); // Pastikan getter benar
             psMasuk.setString(3, barangMasuk.getKeterangan());
             psMasuk.executeUpdate();

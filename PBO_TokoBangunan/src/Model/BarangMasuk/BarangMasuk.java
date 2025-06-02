@@ -19,19 +19,19 @@ public class BarangMasuk {
     private Supplier supplier;
     private String keterangan;
 
-    public int getIdMasuk() {
+    public int getId() {
         return idMasuk;
     }
 
-    public void setIdMasuk(int idMasuk) {
+    public void setId(int idMasuk) {
         this.idMasuk = idMasuk;
     }
 
-    public Date getTanggalMasuk() {
+    public Date getTanggal() {
         return tanggalMasuk;
     }
 
-    public void setTanggalMasuk(Date tanggalMasuk) {
+    public void setTanggal(Date tanggalMasuk) {
         this.tanggalMasuk = tanggalMasuk;
     }
 

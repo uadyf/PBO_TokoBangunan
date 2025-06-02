@@ -17,7 +17,6 @@ public class Barang {
     private double hargaBeli;
     private double hargaJual;
 
-    // Getters dan Setters
     public int getIdBarang() { return idBarang; }
     public void setIdBarang(int idBarang) { this.idBarang = idBarang; }
 
