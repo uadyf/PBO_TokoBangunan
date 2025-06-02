@@ -4,8 +4,6 @@
  */
 package Main;
 
-import View.BarangView;
-
 /**
  *
  * @author ASUS
@@ -17,7 +15,6 @@ public class Main {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        new BarangView().setVisible(true);
     }
     
 }
