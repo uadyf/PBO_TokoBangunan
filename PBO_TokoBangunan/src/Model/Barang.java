@@ -12,12 +12,10 @@ public class Barang {
     private int idBarang;
     private String namaBarang;
     private int idKategori;
-    private String satuan;
     private int stok;
     private double hargaBeli;
     private double hargaJual;
 
-    // Getters dan Setters
     public int getIdBarang() { return idBarang; }
     public void setIdBarang(int idBarang) { this.idBarang = idBarang; }
 
@@ -26,9 +24,6 @@ public class Barang {
 
     public int getIdKategori() { return idKategori; }
     public void setIdKategori(int idKategori) { this.idKategori = idKategori; }
-
-    public String getSatuan() { return satuan; }
-    public void setSatuan(String satuan) { this.satuan = satuan; }
 
     public int getStok() { return stok; }
     public void setStok(int stok) { this.stok = stok; }

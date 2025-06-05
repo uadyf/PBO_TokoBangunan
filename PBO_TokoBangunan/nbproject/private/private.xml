@@ -4,16 +4,18 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/D:/CPP/Prak%20PBO/Project%20PBO/PBO_TokoBangunan/PBO_TokoBangunan/src/DAO/BarangDAOImpl.java</file>
-            <file>file:/D:/CPP/Prak%20PBO/Project%20PBO/PBO_TokoBangunan/PBO_TokoBangunan/src/Model/Barang.java</file>
             <file>file:/D:/CPP/Prak%20PBO/Project%20PBO/PBO_TokoBangunan/PBO_TokoBangunan/src/Utils/Connector.java</file>
-            <file>file:/D:/CPP/Prak%20PBO/Project%20PBO/PBO_TokoBangunan/PBO_TokoBangunan/src/View/BarangForm.java</file>
-            <file>file:/D:/CPP/Prak%20PBO/Project%20PBO/PBO_TokoBangunan/PBO_TokoBangunan/src/View/BarangView.java</file>
-            <file>file:/D:/CPP/Prak%20PBO/Project%20PBO/PBO_TokoBangunan/PBO_TokoBangunan/src/Main/Main.java</file>
-            <file>file:/D:/CPP/Prak%20PBO/Project%20PBO/PBO_TokoBangunan/PBO_TokoBangunan/src/DAO/BarangDAO.java</file>
-            <file>file:/D:/CPP/Prak%20PBO/Project%20PBO/PBO_TokoBangunan/PBO_TokoBangunan/src/Controller/BarangController.java</file>
             <file>file:/D:/CPP/Prak%20PBO/Project%20PBO/PBO_TokoBangunan/PBO_TokoBangunan/src/Model/Kategori.java</file>
             <file>file:/D:/CPP/Prak%20PBO/Project%20PBO/PBO_TokoBangunan/PBO_TokoBangunan/src/DAO/KategoriDAO.java</file>
             <file>file:/D:/CPP/Prak%20PBO/Project%20PBO/PBO_TokoBangunan/PBO_TokoBangunan/src/DAO/KategoriDAOImpl.java</file>
+            <file>file:/D:/CPP/Prak%20PBO/Project%20PBO/PBO_TokoBangunan/PBO_TokoBangunan/src/View/FormEdit.java</file>
+            <file>file:/D:/CPP/Prak%20PBO/Project%20PBO/PBO_TokoBangunan/PBO_TokoBangunan/src/Model/Barang.java</file>
+            <file>file:/D:/CPP/Prak%20PBO/Project%20PBO/PBO_TokoBangunan/PBO_TokoBangunan/src/Controller/KategoriController.java</file>
+            <file>file:/D:/CPP/Prak%20PBO/Project%20PBO/PBO_TokoBangunan/PBO_TokoBangunan/src/Main/Main.java</file>
+            <file>file:/D:/CPP/Prak%20PBO/Project%20PBO/PBO_TokoBangunan/PBO_TokoBangunan/src/View/BarangView.java</file>
+            <file>file:/D:/CPP/Prak%20PBO/Project%20PBO/PBO_TokoBangunan/PBO_TokoBangunan/src/DAO/BarangDAO.java</file>
+            <file>file:/D:/CPP/Prak%20PBO/Project%20PBO/PBO_TokoBangunan/PBO_TokoBangunan/src/Controller/BarangController.java</file>
+            <file>file:/D:/CPP/Prak%20PBO/Project%20PBO/PBO_TokoBangunan/PBO_TokoBangunan/src/View/FormTambah.java</file>
         </group>
     </open-files>
 </project-private>

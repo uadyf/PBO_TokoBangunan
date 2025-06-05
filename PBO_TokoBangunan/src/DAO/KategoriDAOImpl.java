@@ -19,7 +19,7 @@ public class KategoriDAOImpl implements KategoriDAO {
     public List<Kategori> getAll() {
         List<Kategori> list = new ArrayList<>();
         try (Statement st = conn.createStatement()) {
-            ResultSet rs = st.executeQuery("SELECT * FROM kategori");
+            ResultSet rs = st.executeQuery("SELECT * FROM kategori_barang");
             while (rs.next()) {
                 list.add(new Kategori(rs.getInt("id_kategori"), rs.getString("nama_kategori")));
             }
@@ -27,5 +27,22 @@ public class KategoriDAOImpl implements KategoriDAO {
             e.printStackTrace();
         }
         return list;
+    }
+    
+    @Override
+    public String getNamaKategori(int id) {
+        String ret = "";
+        try (Connection conn = Connector.Connect()) {
+            String sql = "SELECT * FROM kategori_barang WHERE id_barang=?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()) {
+                ret = rs.getString("nama_kategori");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return ret;
     }
 }

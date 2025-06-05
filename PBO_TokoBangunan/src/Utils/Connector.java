@@ -15,7 +15,7 @@ import java.sql.SQLException;
 
 public class Connector {
     private static String jdbc_driver = "com.mysql.cj.jdbc.Driver";
-    private static String nama_db = "my_inventaris";
+    private static String nama_db = "my_inventaris2";
     private static String url_db = "jdbc:mysql://localhost:3306/" + nama_db;
     private static String username_db = "root";
     private static String password_db = "";

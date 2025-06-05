@@ -35,4 +35,7 @@ public class BarangController {
         return dao.getById(id);
     }
     
+    public List<Barang> getBarangByKategori(int idKategori) {
+        return dao.getByKategori(idKategori);
+    }
 }
