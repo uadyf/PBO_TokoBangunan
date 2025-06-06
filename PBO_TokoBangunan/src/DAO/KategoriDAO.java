@@ -11,6 +11,5 @@ import java.util.List;
  * @author ASUS
  */
 public interface KategoriDAO {
-    List<Kategori> getAll();
-    String getNamaKategori(int id);
+    List<Kategori> getAllKategori();
 }

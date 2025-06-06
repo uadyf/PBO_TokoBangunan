@@ -14,20 +14,91 @@ import java.util.*;
  * @author ASUS
  */
 public class BarangDAOImpl implements BarangDAO {
+    private Connection conn;
+
+    public BarangDAOImpl() {
+        conn = Connector.Connect();
+    }
+
+    @Override
+    public void insert(Barang b) {
+        String sql = "INSERT INTO barang (nama_barang, id_kategori, satuan, stok, harga_beli, harga_jual) VALUES (?, ?, ?, ?, ?, ?)";
+        try (PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, b.getNamaBarang());
+            ps.setInt(2, b.getIdKategori());
+            ps.setString(3, b.getSatuan());
+            ps.setInt(4, b.getStok());
+            ps.setDouble(5, b.getHargaBeli());
+            ps.setDouble(6, b.getHargaJual());
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void update(Barang b) {
+        String sql = "UPDATE barang SET nama_barang=?, id_kategori=?, satuan=?, stok=?, harga_beli=?, harga_jual=? WHERE id_barang=?";
+        try (PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, b.getNamaBarang());
+            ps.setInt(2, b.getIdKategori());
+            ps.setString(3, b.getSatuan());
+            ps.setInt(4, b.getStok());
+            ps.setDouble(5, b.getHargaBeli());
+            ps.setDouble(6, b.getHargaJual());
+            ps.setInt(7, b.getIdBarang());
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void delete(int id) {
+        String sql = "DELETE FROM barang WHERE id_barang=?";
+        try (PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(1, id);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public Barang getById(int id) {
+        String sql = "SELECT * FROM barang WHERE id_barang=?";
+        try (PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                Barang b = new Barang();
+                b.setIdBarang(rs.getInt("id_barang"));
+                b.setNamaBarang(rs.getString("nama_barang"));
+                b.setIdKategori(rs.getInt("id_kategori"));
+                b.setSatuan(rs.getString("satuan"));
+                b.setStok(rs.getInt("stok"));
+                b.setHargaBeli(rs.getDouble("harga_beli"));
+                b.setHargaJual(rs.getDouble("harga_jual"));
+                return b;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
     @Override
     public List<Barang> getAll() {
         List<Barang> list = new ArrayList<>();
-        try (Connection conn = Connector.Connect()) {
-            String sql = "SELECT * FROM barang";
-            PreparedStatement ps = conn.prepareStatement(sql);
-            ResultSet rs = ps.executeQuery();
-
+        String sql = "SELECT * FROM barang";
+        try (Statement st = conn.createStatement()) {
+            ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
                 Barang b = new Barang();
                 b.setIdBarang(rs.getInt("id_barang"));
                 b.setNamaBarang(rs.getString("nama_barang"));
                 b.setIdKategori(rs.getInt("id_kategori"));
+                b.setSatuan(rs.getString("satuan"));
                 b.setStok(rs.getInt("stok"));
                 b.setHargaBeli(rs.getDouble("harga_beli"));
                 b.setHargaJual(rs.getDouble("harga_jual"));
@@ -38,19 +109,21 @@ public class BarangDAOImpl implements BarangDAO {
         }
         return list;
     }
-
+    
     @Override
-    public List<Barang> getByKategori(int idKategori) {
+    public List<Barang> getBarangByKategori(int idKategori) {
         List<Barang> list = new ArrayList<>();
         try {
             String sql = "SELECT * FROM barang WHERE id_kategori = ?";
-            PreparedStatement ps = Connector.Connect().prepareStatement(sql);
+            PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, idKategori);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Barang b = new Barang();
                 b.setIdBarang(rs.getInt("id_barang"));
                 b.setNamaBarang(rs.getString("nama_barang"));
+                b.setIdKategori(rs.getInt("id_kategori"));
+                b.setSatuan(rs.getString("satuan"));
                 b.setStok(rs.getInt("stok"));
                 b.setHargaBeli(rs.getDouble("harga_beli"));
                 b.setHargaJual(rs.getDouble("harga_jual"));
@@ -64,74 +137,4 @@ public class BarangDAOImpl implements BarangDAO {
         return list;
     }
 
-    @Override
-    public Barang getById(int id) {
-        Barang b = null;
-        try (Connection conn = Connector.Connect()) {
-            String sql = "SELECT * FROM barang WHERE id_barang=?";
-            PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setInt(1, id);
-            ResultSet rs = ps.executeQuery();
-
-            if (rs.next()) {
-                b = new Barang();
-                b.setIdBarang(rs.getInt("id_barang"));
-                b.setNamaBarang(rs.getString("nama_barang"));
-                b.setIdKategori(rs.getInt("id_kategori"));
-                b.setStok(rs.getInt("stok"));
-                b.setHargaBeli(rs.getDouble("harga_beli"));
-                b.setHargaJual(rs.getDouble("harga_jual"));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return b;
-    }
-
-    @Override
-    public void insert(Barang b) {
-        try (Connection conn = Connector.Connect()) {
-            String sql = "INSERT INTO barang (nama_barang, id_kategori, stok, harga_beli, harga_jual) " +
-                         "VALUES (?, ?, ?, ?, ?)";
-            PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setString(1, b.getNamaBarang());
-            ps.setInt(2, b.getIdKategori());
-            ps.setInt(3, b.getStok());
-            ps.setDouble(4, b.getHargaBeli());
-            ps.setDouble(5, b.getHargaJual());
-            ps.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Override
-    public void update(Barang b) {
-        try (Connection conn = Connector.Connect()) {
-            String sql = "UPDATE barang SET nama_barang=?, id_kategori=?, stok=?, harga_beli=?, harga_jual=? " +
-                         "WHERE id_barang=?";
-            PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setString(1, b.getNamaBarang());
-            ps.setInt(2, b.getIdKategori());
-            ps.setInt(3, b.getStok());
-            ps.setDouble(4, b.getHargaBeli());
-            ps.setDouble(5, b.getHargaJual());
-            ps.setInt(6, b.getIdBarang());
-            ps.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Override
-    public void delete(int id) {
-        try (Connection conn = Connector.Connect()) {
-            String sql = "DELETE FROM barang WHERE id_barang = ?";
-            PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setInt(1, id);
-            ps.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
 }

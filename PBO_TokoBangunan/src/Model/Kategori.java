@@ -16,13 +16,26 @@ public class Kategori {
         this.idKategori = id;
         this.namaKategori = nama;
     }
-    public int getId() { return idKategori; }
-    public void setId(int idKategori) { this.idKategori = idKategori; }
-    public String getNama() { return namaKategori; }
-    public void setNama(String namaKategori ) { this.namaKategori = namaKategori; }
+
+    public int getIdKategori() {
+        return idKategori;
+    }
+    
+    public void setIdKategori(int idKategori) {
+        this.idKategori = idKategori;
+    }
+    
+    public String getNamaKategori() {
+        return namaKategori;
+    }
+    
+    public void setNamaKategori(String namaKategori) {
+        this.namaKategori = namaKategori;
+    }
+
 
     @Override
     public String toString() {
-        return namaKategori;
+        return namaKategori; // untuk tampil di JComboBox
     }
 }

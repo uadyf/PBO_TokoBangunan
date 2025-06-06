@@ -16,5 +16,5 @@ public interface BarangDAO {
     void delete(int idBarang);
     Barang getById(int idBarang);
     List<Barang> getAll();
-    List<Barang> getByKategori(int idKategori);
+    List<Barang> getBarangByKategori(int idKategori);
 }

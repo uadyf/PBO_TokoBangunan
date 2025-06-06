@@ -8,20 +8,20 @@ import DAO.KategoriDAO;
 import DAO.KategoriDAOImpl;
 import Utils.Connector;
 import Model.Kategori;
-import java.util.List;
 
+import java.util.List;
 /**
  *
  * @author ASUS
  */
 public class KategoriController {
-    private KategoriDAO kategoriDAO = new KategoriDAOImpl();
-    
-    public List<Kategori> getAllKategori() {
-        return kategoriDAO.getAll();
+    private KategoriDAO kategoriDAO;
+
+    public KategoriController() {
+        kategoriDAO = new KategoriDAOImpl(Connector.Connect());
     }
-    
-    public String getNama(int id) {
-        return kategoriDAO.getNamaKategori(id);
+
+    public List<Kategori> getAllKategori() {
+        return kategoriDAO.getAllKategori();
     }
 }
